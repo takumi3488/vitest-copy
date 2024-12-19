@@ -1,0 +1,46 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base", "schedule:weekly", "group:allNonMajor"],
+  "labels": ["dependencies"],
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "groupName": "Eslint packages",
+      "matchPackageNames": ["/eslint/"]
+    },
+    {
+      "depTypeList": ["peerDependencies"],
+      "enabled": false
+    },
+    {
+      "matchPaths": [
+        "examples/**"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "all non-major examples dependencies",
+      "groupSlug": "all-minor-patch-examples"
+    }
+  ],
+  "ignoreDeps": [
+    // manually bumping
+    "node",
+    "vite",
+    // bumping breaks coverage
+    // https://github.com/vitest-dev/vitest/actions/runs/12121857184/job/33793728382?pr=6920
+    "vue",
+    // we patch these packages
+    "@types/chai",
+    "@sinonjs/fake-timers",
+    "cac",
+    // Pinned due to https://github.com/vitest-dev/vitest/issues/4710
+    "log-update",
+    // Pinned because it requires "node" condition in the new version
+    // But we intentionally build Vitest ambiguously
+    "find-up",
+    // Transitive dependency that we patch
+    "acorn"
+  ]
+}

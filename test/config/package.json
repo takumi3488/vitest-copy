@@ -1,0 +1,13 @@
+{
+  "name": "@vitest/test-config",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "vitest --typecheck.enabled"
+  },
+  "devDependencies": {
+    "tinyexec": "^0.3.0",
+    "vite": "latest",
+    "vitest": "workspace:*"
+  }
+}

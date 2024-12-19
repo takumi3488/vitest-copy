@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "skipLibCheck": true
+  },
+  "include": ["./client/**/*"],
+  "exclude": ["dist", "node_modules"]
+}
