@@ -87,33 +87,33 @@
     }
   },
   "dependencies": {
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/user-event": "^14.5.2",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/user-event": "^14.6.1",
     "@vitest/mocker": "workspace:*",
     "@vitest/utils": "workspace:*",
-    "magic-string": "^0.30.14",
-    "msw": "^2.6.8",
-    "sirv": "^3.0.0",
+    "magic-string": "^0.30.19",
+    "msw": "^2.11.1",
+    "sirv": "^3.0.2",
     "tinyrainbow": "^1.2.0",
-    "ws": "^8.18.0"
+    "ws": "^8.18.3"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.6.3",
-    "@types/ws": "^8.5.13",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@types/ws": "^8.18.1",
     "@vitest/runner": "workspace:*",
     "@vitest/ui": "workspace:*",
     "@vitest/ws-client": "workspace:*",
-    "@wdio/protocols": "^8.40.3",
+    "@wdio/protocols": "^8.44.0",
     "birpc": "0.2.19",
-    "flatted": "^3.3.2",
-    "ivya": "^1.1.1",
-    "mime": "^4.0.4",
+    "flatted": "^3.3.3",
+    "ivya": "^1.7.0",
+    "mime": "^4.0.7",
     "pathe": "^1.1.2",
     "periscopic": "^4.0.2",
-    "playwright": "^1.49.0",
-    "playwright-core": "^1.49.0",
+    "playwright": "^1.55.0",
+    "playwright-core": "^1.55.0",
     "safaridriver": "^1.0.0",
     "vitest": "workspace:*",
-    "webdriverio": "^8.40.6"
+    "webdriverio": "^8.46.0"
   }
 }

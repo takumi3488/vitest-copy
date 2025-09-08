@@ -83,13 +83,13 @@
   },
   "dependencies": {
     "cac": "^6.7.14",
-    "debug": "^4.4.0",
-    "es-module-lexer": "^1.5.4",
+    "debug": "^4.4.1",
+    "es-module-lexer": "^1.7.0",
     "pathe": "^1.1.2",
     "vite": "^5.0.0 || ^6.0.0"
   },
   "devDependencies": {
-    "@jridgewell/trace-mapping": "^0.3.25",
+    "@jridgewell/trace-mapping": "^0.3.30",
     "@types/debug": "^4.1.12",
     "tinyrainbow": "^1.2.0"
   }
