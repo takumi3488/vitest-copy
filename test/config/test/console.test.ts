@@ -10,14 +10,26 @@ test('default intercept', async () => {
 
 test.each(['threads', 'vmThreads'] as const)(`disable intercept pool=%s`, async (pool) => {
   // `disableConsoleIntercept: true` forwards workers console.error to main thread's stderr
-  const spy = vi.spyOn(process.stderr, 'write').mockImplementation(() => true)
+  const spy = vi.spyOn(process.stderr, 'write').mockImplementation(
+    (chunk: any, encodingOrCallback?: any, callback?: any) => {
+      // Call the callback to avoid corrupting the stream's internal state
+      const cb = typeof encodingOrCallback === 'function' ? encodingOrCallback : callback
+      cb?.()
+      return true
+    },
+  )
 
-  await runVitest({
-    root: './fixtures/console',
-    disableConsoleIntercept: true,
-    pool,
-  })
+  try {
+    await runVitest({
+      root: './fixtures/console',
+      disableConsoleIntercept: true,
+      pool,
+    })
 
-  const call = spy.mock.lastCall![0]
-  expect(call.toString()).toBe('__test_console__\n')
+    const call = spy.mock.lastCall![0]
+    expect(call.toString()).toBe('__test_console__\n')
+  }
+  finally {
+    spy.mockRestore()
+  }
 })
