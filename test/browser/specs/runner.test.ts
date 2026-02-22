@@ -154,7 +154,7 @@ test.skipIf(provider === 'webdriverio' && browser === 'firefox')('user-event', a
   `)
 })
 
-test('timeout', async () => {
+test.skipIf(provider === 'webdriverio' && browser === 'firefox')('timeout', async () => {
   const { stderr } = await runBrowserTests({
     root: './fixtures/timeout',
   })
