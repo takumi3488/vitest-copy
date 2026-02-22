@@ -93,6 +93,9 @@ test('can import @vite/client', async () => {
   await expect(import(/* @vite-ignore */ `/${name}`)).resolves.not.toThrow()
 })
 
+const [nodeMajor] = process.versions.node.split('.').map(Number)
+const isNode22Plus = nodeMajor >= 22
+
 describe('importing special files from node_modules', async () => {
   const dir = resolve(__dirname, '../src/node_modules')
   const wasm = resolve(dir, 'file.wasm')
@@ -111,7 +114,7 @@ describe('importing special files from node_modules', async () => {
     expect(mod.default).toBe('/src/node_modules/file.wasm')
   })
 
-  test('importing wasm with ?raw query', async () => {
+  test.skipIf(isNode22Plus)('importing wasm with ?raw query', async () => {
     const mod = await importModule('../src/node_modules/file.wasm?raw')
     expect(mod.default).toBe('(module)')
   })
