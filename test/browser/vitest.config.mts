@@ -42,6 +42,10 @@ export default defineConfig({
       headless: false,
       provider,
       isolate: false,
+      viewport: {
+        width: 1280,
+        height: 1024,
+      },
       testerScripts: [
         {
           content: 'globalThis.__injected = []',
