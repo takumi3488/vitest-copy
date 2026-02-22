@@ -15,7 +15,19 @@ export const click: UserEventCommand<UserEvent['click']> = async (
   }
   else if (provider instanceof WebdriverBrowserProvider) {
     const browser = context.browser
-    await browser.$(selector).click(options as any)
+    const element = await browser.$(selector)
+    const opts = options as any
+    const button = opts.button === 'right' ? 2 : opts.button === 'middle' ? 1 : 0
+    const xOffset = opts.x ?? 0
+    const yOffset = opts.y ?? 0
+    // Use Actions API with origin: element to avoid "element click intercepted"
+    // errors in Chrome 115+ new headless mode when clicking inside iframes
+    await browser
+      .action('pointer', { parameters: { pointerType: 'mouse' } })
+      .move({ x: xOffset, y: yOffset, origin: element })
+      .down({ button })
+      .up({ button })
+      .perform()
   }
   else {
     throw new TypeError(`Provider "${provider.name}" doesn't support click command`)

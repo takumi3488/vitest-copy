@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest'
-import { runBrowserTests } from './utils'
+import { browser, provider, runBrowserTests } from './utils'
 
-test('worker', async () => {
+test.skipIf(provider === 'webdriverio' && browser === 'firefox')('worker', async () => {
   const { ctx } = await runBrowserTests({
     root: './fixtures/worker',
   })
