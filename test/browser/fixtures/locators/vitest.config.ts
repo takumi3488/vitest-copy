@@ -17,6 +17,10 @@ export default defineConfig({
       provider,
       name,
       headless: true,
+      viewport: {
+        width: 1280,
+        height: 1024,
+      },
     },
     onConsoleLog(log) {
       if (log.includes('ReactDOMTestUtils.act')) {

@@ -152,6 +152,12 @@ jobs:
         if: ${{ matrix.browser[0] == 'chromium' }}
       - uses: browser-actions/setup-firefox@v1
         if: ${{ matrix.browser[0] == 'firefox' }}
+      - name: Fix Firefox permissions on macOS
+        if: ${{ matrix.browser[0] == 'firefox' && runner.os == 'macOS' }}
+        run: |
+          if [ -d "/Applications/Firefox.app" ]; then
+            xattr -cr /Applications/Firefox.app || true
+          fi
 
       - name: Install
         run: pnpm i
