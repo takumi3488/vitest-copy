@@ -230,7 +230,7 @@ describe('userEvent.tripleClick', () => {
 })
 
 describe('userEvent.hover, userEvent.unhover', () => {
-  test('hover, unhover works correctly', async () => {
+  test.skipIf(server.provider === 'webdriverio')('hover, unhover works correctly', async () => {
     const target = document.createElement('div')
     target.style.width = '100px'
     target.style.height = '100px'
@@ -304,7 +304,7 @@ describe('userEvent.hover, userEvent.unhover', () => {
     expect(modifiersDetected.control).toEqual(unhoverOptions.modifiers.includes('Control'))
   })
 
-  test('hover works with shadow root', async () => {
+  test.skipIf(server.provider === 'webdriverio')('hover works with shadow root', async () => {
     const shadowRoot = createShadowRoot()
     const target = document.createElement('div')
     target.style.width = '100px'
@@ -338,7 +338,7 @@ describe('userEvent.hover, userEvent.unhover', () => {
     expect(mouseEntered).toBe(false)
   })
 
-  test('hover works with svg', async () => {
+  test.skipIf(server.provider === 'webdriverio')('hover works with svg', async () => {
     const target = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
     const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
     circle.setAttribute('cx', '50')

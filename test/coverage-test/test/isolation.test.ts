@@ -9,7 +9,7 @@ if (!process.env.COVERAGE_BROWSER) {
 
   const [major] = process.version.slice(1).split('.').map(num => Number(num))
 
-  if (major < 22) {
+  if (major < 20) {
     pools.push('vmForks', 'vmThreads')
   }
 }

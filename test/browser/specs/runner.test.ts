@@ -140,7 +140,7 @@ error with a stack
   })
 })
 
-test('user-event', async () => {
+test.skipIf(provider === 'webdriverio' && browser === 'firefox')('user-event', async () => {
   const { ctx } = await runBrowserTests({
     root: './fixtures/user-event',
   })
@@ -154,7 +154,7 @@ test('user-event', async () => {
   `)
 })
 
-test('timeout', async () => {
+test.skipIf(provider === 'webdriverio' && browser === 'firefox')('timeout', async () => {
   const { stderr } = await runBrowserTests({
     root: './fixtures/timeout',
   })

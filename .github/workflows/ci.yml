@@ -68,7 +68,7 @@ jobs:
 
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@bab30c2299617f6615ec02a68b9a40d10bd21366 # v45.0.5
+        uses: tj-actions/changed-files@a284dc1814e3fd07f2e34267fc8f81227ed29fb8 # v45.0.5
         with:
           files: |
             docs/**
@@ -89,7 +89,7 @@ jobs:
         os: [ubuntu-latest]
         node_version: [18, 20, 22]
         include:
-          - os: macos-latest
+          - os: macos-14
             node_version: 20
           - os: windows-latest
             node_version: 20
@@ -131,7 +131,7 @@ jobs:
     strategy:
       matrix:
         os:
-          - macos-latest
+          - macos-14
           - windows-latest
         browser:
           - [chromium, chrome]
@@ -152,6 +152,12 @@ jobs:
         if: ${{ matrix.browser[0] == 'chromium' }}
       - uses: browser-actions/setup-firefox@v1
         if: ${{ matrix.browser[0] == 'firefox' }}
+      - name: Fix Firefox permissions on macOS
+        if: ${{ matrix.browser[0] == 'firefox' && runner.os == 'macOS' }}
+        run: |
+          if [ -d "/Applications/Firefox.app" ]; then
+            xattr -cr /Applications/Firefox.app || true
+          fi
 
       - name: Install
         run: pnpm i
